@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Form, Input, Select, Checkbox, Button, Row, Col } from 'antd'
 import logPng from '../../assets/imgs/logPng.jpg'
 
@@ -51,6 +52,8 @@ const Login = () => {
   const [click, setClick] = useState(false)
   const [form] = Form.useForm()
 
+  const navigate = useNavigate()
+
   const onFinish = (values) => {
     console.log('Received values of form: ', values)
 
@@ -70,8 +73,8 @@ const Login = () => {
         return response
       })
       .then((data) => {
-        console.log(data);
-        // alert(data.message)
+        console.log('bu 1- data: ',data);
+        alert(data.status === 204 ? 'code is right sent' : 'code isn`t sent' )
       })
       .catch((err) => console.log(err))
 
@@ -82,6 +85,7 @@ const Login = () => {
       fetch('https://api.uracashback.uz/security/verify-login', {
       method: 'POST',
       headers: {
+        Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -90,15 +94,15 @@ const Login = () => {
       }),
     })
       .then((response) => {
-        return response
+        return response.json();
       })
       .then((data) => {
-        console.log(data);
-        // alert(data.message)
+        data.token ? navigate('/main') : alert('code isn`t');
+        localStorage.setItem('token', data.token)
+
       })
       .catch((err) => console.log(err))
 
-      console.log(click, 'clik')
     }
   }
 
@@ -141,6 +145,7 @@ const Login = () => {
                 label="Phone Number"
                 rules={[
                   {
+                    min:7,
                     required: true,
                     message: 'Please input your phone number!',
                   },
@@ -198,11 +203,11 @@ const Login = () => {
                 <Button type="primary" htmlType="submit" style={{display: !click ? '' : 'none'}} >
                   send phone number
                 </Button>
-                <Link to={'/main'} >
-                <Button type="primary" htmlType="submit" style={{display: click ? 'flex' : 'none'}}>
+                {/* <Link to={''} > */}
+                <Button type="primary" htmlType="submit" style={{display: click ? 'flex' : 'none'}} >
                   send sms code
                 </Button>
-                </Link>
+                {/* </Link> */}
                 <Desc>yoki ijtimoiy tarmoqlar orqali kiring</Desc>
                 {messengerData.map(
                   ({ id, facebook, insta, youtube, github }) => {
