@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-// import { TableWrapper, ColumnWrapper } from './style'
 import { DataBar, Link, Discreption } from './style'
 
 import { CompaniesContext } from '../../context/companies'
@@ -7,7 +6,6 @@ import { CompaniesContext } from '../../context/companies'
 const Main = () => {
   const [companies, setcompanies] = useContext(CompaniesContext)
 
-  
   const setFeedbackIdtoLocalStorage = (id) => {
     localStorage.setItem('companyId', id)
   }
@@ -16,7 +14,7 @@ const Main = () => {
     <div>
       {companies.items.map((value) => {
         return (
-          <DataBar>
+          <DataBar key={value.id} >
             <Link
               onClick={() => setFeedbackIdtoLocalStorage(value.id)}
               to={'/product'}

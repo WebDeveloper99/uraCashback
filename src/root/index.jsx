@@ -12,6 +12,7 @@ const Root = () => {
         <Route path='/' element={<Login/>} />
         <Route path={'/main'} element={<Main/>} />
         <Route path={'/product'} element={<Product/>} />
+        <Route path={'/product/:id'} element={<Product/>} />
       </Routes>
     </div>
   )

@@ -2,25 +2,6 @@
 
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-// import { Table } from 'antd'
-
-// const { Column } = Table
-
-// export const TableWrapper = styled(Table)`
-//   width: 1400px;
-//   margin: auto;
-//   margin-top: 50px;
-//   border: 1px solid black;
-//   cursor: pointer;
-//   `
-
-
-// export const ColumnWrapper = styled(Column)`
-
-// `
-
-
-
 
 export const DataBar = styled.div`
 display: flex;
@@ -37,7 +18,6 @@ line-height: 26px;
 color: #000;
 
 `
-
 
 export const Discreption = styled.div`
 display: flex;

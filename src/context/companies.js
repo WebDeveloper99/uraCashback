@@ -4,8 +4,10 @@ import React, { createContext, useEffect, useState } from 'react'
 export const CompaniesContext = createContext()
 
 export const CompaniesContextProvider = ({ children }) => {
-  const [companies, setCompanies] = useState({})
-
+  const [companies, setCompanies] = useState('')
+  const getApi = () => {
+    
+  }
   useEffect(() => {
     fetch('https://api.uracashback.uz/companies', {
       headers: {
@@ -18,6 +20,7 @@ export const CompaniesContextProvider = ({ children }) => {
         return response.json()
       })
       .then((data) => {
+        console.log(data, 'nu dada');
         setCompanies(data)
       })
       .catch((err) => alert(err))

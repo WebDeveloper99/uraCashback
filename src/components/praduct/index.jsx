@@ -97,7 +97,7 @@ const Product = () => {
     const columns = [
       {
         title: 'Company Id',
-        dataIndex: 'company',
+        dataIndex: 'id',
         key: 'id',
         width: '2%',
         ...getColumnSearchProps('company'),
