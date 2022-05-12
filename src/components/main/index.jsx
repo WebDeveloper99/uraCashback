@@ -1,26 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
+// import { TableWrapper, ColumnWrapper } from './style'
+import { DataBar, Link, Discreption } from './style'
+
+import { CompaniesContext } from '../../context/companies'
 
 const Main = () => {
+  const [companies, setcompanies] = useContext(CompaniesContext)
 
-  fetch('https://api.uracashback.uz/companies', {
-    headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => {
-      return response.json()
-    })
-    .then((data) => {
-      console.log(data);
-      localStorage.setItem('token', data.token)
-    })
-    .catch((err) => console.log(err))
+  
+  const setFeedbackIdtoLocalStorage = (id) => {
+    localStorage.setItem('companyId', id)
+  }
 
-  return <div>
-    main
-  </div>
+  return (
+    <div>
+      {companies.items.map((value) => {
+        return (
+          <DataBar>
+            <Link
+              onClick={() => setFeedbackIdtoLocalStorage(value.id)}
+              to={'/product'}
+            >
+              {value.name}
+            </Link>
+            <Discreption>{value.status}</Discreption>
+          </DataBar>
+        )
+      })}
+    </div>
+  )
 }
 
 export default Main

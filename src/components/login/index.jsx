@@ -55,7 +55,6 @@ const Login = () => {
   const navigate = useNavigate()
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values)
 
     if (!values.captcha) {
       alert('send message your phone')
@@ -73,10 +72,9 @@ const Login = () => {
         return response
       })
       .then((data) => {
-        console.log('bu 1- data: ',data);
         alert(data.status === 204 ? 'code is right sent' : 'code isn`t sent' )
       })
-      .catch((err) => console.log(err))
+      .catch((err) => alert(err))
 
       setClick(true)
     } else if (values.captcha) {
@@ -101,7 +99,7 @@ const Login = () => {
         localStorage.setItem('token', data.token)
 
       })
-      .catch((err) => console.log(err))
+      .catch((err) => alert(err))
 
     }
   }
